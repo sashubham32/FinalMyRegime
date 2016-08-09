@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "588305296323",
+    "firebase_url": "https://my-regime-5853b.firebaseio.com",
+    "project_id": "my-regime-5853b",
+    "storage_bucket": "my-regime-5853b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588305296323:android:d4072beee8255db3",
+        "android_client_info": {
+          "package_name": "com.example.sashu.myregime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588305296323-5r45umabv11m29rh5n507o3b1lm2me62.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8mZ5tOsJsVxIdvOawywbMG9aXm40t_As"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
