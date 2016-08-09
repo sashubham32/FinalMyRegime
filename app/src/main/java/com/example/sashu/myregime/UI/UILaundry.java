@@ -1,5 +1,6 @@
 package com.example.sashu.myregime.UI;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.ArrayRes;
 import android.support.design.widget.FloatingActionButton;
@@ -37,6 +38,7 @@ public class UILaundry extends AppCompatActivity {
     ArrayAdapter listViewAdapter;
     RecyclerView clothesListRecyclerView;
     List<ClothBundleClass> clothesBundleList;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +54,9 @@ public class UILaundry extends AppCompatActivity {
         clothesBundleList = new ArrayList<>();
         addLaundryButton = (FloatingActionButton) findViewById(R.id.add_laundry_button);
         clothesBundle = new ClothBundleClass();
-        //stringArrayList = new ArrayList<String>();
-        //clothesList = new ArrayList<ClothClass>();
-        //laundryListView = (ListView) findViewById(R.id.laundry_list);
+        progressDialog = new ProgressDialog(UILaundry.this);
+        progressDialog.setTitle("Loading");
+        progressDialog.setMessage("Wait Please!");
 
 
         mRootRef = FirebaseDatabase.getInstance().getReference();
@@ -67,7 +69,7 @@ public class UILaundry extends AppCompatActivity {
             }
         });
 
-
+        progressDialog.show();
         mLaundryRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -87,6 +89,8 @@ public class UILaundry extends AppCompatActivity {
 
                 ClothesAdapter ca = new ClothesAdapter(clothesBundleList);
                 clothesListRecyclerView.setAdapter(ca);
+
+                progressDialog.hide();
 
                 //listViewAdapter = new ArrayAdapter<>(UILaundry.this,android.R.layout.simple_list_item_1, stringArrayList);
                 //laundryListView.setAdapter(listViewAdapter);
