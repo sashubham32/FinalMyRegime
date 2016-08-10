@@ -12,10 +12,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
 import com.example.sashu.myregime.R;
 import com.example.sashu.myregime.data.ClothBundleClass;
 import com.example.sashu.myregime.data.ClothClass;
 import com.example.sashu.myregime.data.ClothesAdapter;
+import com.example.sashu.myregime.data.LaundryExpandableAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,6 +41,9 @@ public class UILaundry extends AppCompatActivity {
     RecyclerView clothesListRecyclerView;
     List<ClothBundleClass> clothesBundleList;
     ProgressDialog progressDialog;
+    List<String> strings;
+    List<ParentObject> parentObjects;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,8 @@ public class UILaundry extends AppCompatActivity {
     }
 
     public void init(){
+
+        parentObjects = new ArrayList<>();
 
         clothesBundleList = new ArrayList<>();
         addLaundryButton = (FloatingActionButton) findViewById(R.id.add_laundry_button);
@@ -81,14 +88,35 @@ public class UILaundry extends AppCompatActivity {
 
                 }
 
+                for ( ClothBundleClass clothBundleClass : clothesBundleList ){
+
+
+                    List<Object> list = new ArrayList<>();
+
+                    for ( ClothClass cloth : clothBundleClass.getClothes() ) {
+                        list.add(cloth);
+                    }
+
+                    clothBundleClass.setChildObjectList(list);
+                    parentObjects.add(clothBundleClass);
+                }
+
                 clothesListRecyclerView = (RecyclerView) findViewById(R.id.clothesList);
                 clothesListRecyclerView.setHasFixedSize(true);
                 LinearLayoutManager llm = new LinearLayoutManager(UILaundry.this);
                 llm.setOrientation(LinearLayoutManager.VERTICAL);
                 clothesListRecyclerView.setLayoutManager(llm);
 
-                ClothesAdapter ca = new ClothesAdapter(clothesBundleList);
-                clothesListRecyclerView.setAdapter(ca);
+                /*ClothesAdapter ca = new ClothesAdapter(clothesBundleList);
+
+                clothesListRecyclerView.setAdapter(ca);*/
+
+                LaundryExpandableAdapter laundryExpandableAdapter = new LaundryExpandableAdapter(UILaundry.this, parentObjects);
+                laundryExpandableAdapter.setCustomParentAnimationViewId(R.id.parent_list_item_expand_arrow);
+                laundryExpandableAdapter.setParentClickableViewAnimationDefaultDuration();
+                laundryExpandableAdapter.setParentAndIconExpandOnClick(true);
+
+                clothesListRecyclerView.setAdapter(laundryExpandableAdapter);
 
                 progressDialog.hide();
 

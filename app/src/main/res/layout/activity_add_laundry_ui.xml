@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.sashu.myregime.UI.AddLaundryUI">
+    tools:context="com.example.sashu.myregime.UI.AddLaundryUI"
+    android:id="@+id/addLaundryRelativeLayout"
+    >
+
 
     <TextView
         android:id="@+id/date_textView"
@@ -17,6 +20,12 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mainLinearLayout"
+        android:orientation="vertical">
 
     <EditText
         android:layout_width="match_parent"
@@ -38,7 +47,7 @@
         android:layout_marginRight="40dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/cloth1EditText"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="10dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -49,7 +58,10 @@
         android:layout_marginRight="40dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/cloth2EditText"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="10dp" />
+
+
+    </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
@@ -57,10 +69,19 @@
         android:text="Add Clothes"
         android:layout_centerHorizontal="true"
         android:id="@+id/addClothesButton"
-        android:layout_below="@+id/cloth3EditText"
-        android:layout_marginTop="46dp"
+        android:layout_below="@+id/mainLinearLayout"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp"
         />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/addEditText"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

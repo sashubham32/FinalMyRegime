@@ -1,13 +1,16 @@
 package com.example.sashu.myregime.data;
 
+import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ClothBundleClass {
+public class ClothBundleClass implements ParentObject{
 
     private List<ClothClass> clothes;
     private Date date;
+    private List<Object> mChildrenList;
 
     public ClothBundleClass(){
 
@@ -40,4 +43,13 @@ public class ClothBundleClass {
         this.date = date;
     }
 
+    @Override
+    public List<Object> getChildObjectList() {
+        return mChildrenList;
+    }
+
+    @Override
+    public void setChildObjectList(List<Object> list) {
+        mChildrenList = list;
+    }
 }
